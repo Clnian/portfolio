@@ -146,13 +146,24 @@ body {
 
 /* Hero */
 .hero-title {
+  font-size: clamp(3.5rem, 8vw, 6rem);   /* 自适应：小屏 3.5rem，大屏 6rem */
+  line-height: 1;
   background: linear-gradient(180deg, #ffffff 0%, #d4d4d4 60%, #a3a3a3 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;                      /* 标准属性，Firefox 也能渐变文字 */
+  -webkit-text-fill-color: transparent;    /* WebKit 后备 */
   font-weight: 700;
   letter-spacing: 0.08em;
   animation: title-glow 3s ease-in-out infinite alternate;
+}
+
+@media (min-width: 640px) {
+  .hero-title { font-size: clamp(4.5rem, 10vw, 8rem); }
+}
+
+@media (min-width: 1024px) {
+  .hero-title { font-size: clamp(6rem, 10vw, 10rem); }
 }
 
 @keyframes title-glow {
@@ -379,11 +390,6 @@ button, a {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 3.5rem;
-    letter-spacing: 0.05em;
-  }
-  
   .hero-subtitle {
     font-size: 1.125rem;
   }
