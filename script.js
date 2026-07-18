@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const span = document.createElement('span');
       span.textContent = char;
       span.style.display = 'inline-block';
+      span.style.marginRight = index < text.length - 1 ? '0.08em' : '0';
       span.style.opacity = '0';
       span.style.transform = 'translateY(30px)';
       span.style.animation = `fade-in-up 0.8s ease-out ${index * 0.1}s forwards`;
