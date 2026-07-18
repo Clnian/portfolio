@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>程磊 · 物联网工程应届生</title>
+  <meta name="description" content="程磊，黄河交通学院物联网工程专业2026届应届生，具备校园IT运维经验，能独立完成嵌入式、移动应用和后端项目。">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'Noto Sans SC', 'system-ui', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-black text-neutral-300 font-sans antialiased selection:bg-white/20 selection:text-white overflow-x-hidden">
+  <!-- Progress bar -->
+  <div id="progress-bar" class="fixed top-0 left-0 h-[2px] bg-white z-[60] w-0 transition-all duration-150"></div>
+
+  <!-- Canvas background -->
+  <canvas id="particle-canvas" class="fixed inset-0 -z-10 w-full h-full pointer-events-none opacity-60"></canvas>
+
+  <!-- Ambient glow orbs -->
+  <div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:72px_72px]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_900px_at_50%_180px,#ffffff06,transparent)]"></div>
+  </div>
+  <div class="fixed inset-0 -z-15 overflow-hidden pointer-events-none">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+  </div>
+
+  <!-- Mouse spotlight -->
+  <div id="mouse-spotlight" class="fixed inset-0 -z-5 pointer-events-none opacity-0 transition-opacity duration-700"></div>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-black/30 backdrop-blur-2xl transition-all duration-300" id="navbar">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-18">
+        <a href="#" class="text-sm font-medium tracking-[0.25em] text-white uppercase nav-logo">程磊</a>
+        <div class="hidden md:flex items-center space-x-10 text-sm text-neutral-400">
+          <a href="#about" class="nav-link">关于</a>
+          <a href="#skills" class="nav-link">技能</a>
+          <a href="#projects" class="nav-link">项目</a>
+          <a href="#experience" class="nav-link">经历</a>
+          <a href="#contact" class="nav-link">联系</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-neutral-400 hover:text-white transition-colors" aria-label="菜单">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-t border-white/[0.06]">
+      <div class="px-4 py-4 space-y-1">
+        <a href="#about" class="mobile-nav-link">关于</a>
+        <a href="#skills" class="mobile-nav-link">技能</a>
+        <a href="#projects" class="mobile-nav-link">项目</a>
+        <a href="#experience" class="mobile-nav-link">经历</a>
+        <a href="#contact" class="mobile-nav-link">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="relative min-h-[85vh] flex flex-col items-center justify-start px-4 sm:px-6 lg:px-8 overflow-hidden pt-28 sm:pt-36">
+    <div class="max-w-5xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1000">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.02] text-neutral-400 text-xs mb-10 hero-badge">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        2026 届应届生 · 物联网工程
+      </div>
+      <h1 class="text-8xl sm:text-9xl lg:text-[10rem] font-bold text-white mb-10 tracking-tight hero-title" id="hero-name">
+        程磊
+      </h1>
+      <p class="text-lg sm:text-xl lg:text-2xl text-neutral-400 leading-relaxed max-w-3xl mx-auto mb-14 hero-subtitle">
+        黄河交通学院物联网工程专业本科生。有 <span class="text-white">2 年校园 IT 运维</span>经验，熟悉多媒体设备、机房管理、网络硬件维护和故障排查；能使用 AI 编程工具独立完成 <span class="text-white">STM32 嵌入式</span>、<span class="text-white">Android / Flutter 移动应用</span> 和 <span class="text-white">Python 后端</span>项目。
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-neutral-500 mb-16">
+        <a href="tel:19839757907" class="contact-pill">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+          19839757907
+        </a>
+        <span class="hidden sm:inline h-4 w-px bg-white/10"></span>
+        <a href="mailto:Wn3305105269@163.com" class="contact-pill">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          Wn3305105269@163.com
+        </a>
+      </div>
+      <div class="flex flex-wrap justify-center gap-12 sm:gap-16" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+        <div class="text-center stat-item">
+          <div class="text-4xl sm:text-5xl font-light text-white mb-2 counter" data-target="2" data-suffix="年">0</div>
+          <div class="text-xs text-neutral-500 tracking-widest uppercase">校园 IT 运维</div>
+        </div>
+        <div class="text-center stat-item">
+          <div class="text-4xl sm:text-5xl font-light text-white mb-2 counter" data-target="5" data-suffix="+">0</div>
+          <div class="text-xs text-neutral-500 tracking-widest uppercase">独立项目</div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-neutral-600 animate-bounce">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    </div>
+  </header>
+
+  <section id="about" class="py-32 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div data-aos="fade-right" data-aos-duration="800">
+          <p class="section-label mb-4">About</p>
+          <h2 class="text-4xl sm:text-5xl text-white font-light mb-10 leading-tight">运维与开发<br>两件事互相影响</h2>
+          <div class="space-y-6 text-lg text-neutral-400 leading-relaxed">
+            <p>在校期间，我同时做了两件事：校园 IT 运维助理和独立项目开发。</p>
+            <p>运维工作让我熟悉了机房、多媒体设备和网络硬件的维护；独立项目让我能完成从需求分析到代码实现、部署测试的完整流程。</p>
+            <p>排查硬件故障时养成的习惯——先看日志、再找根因——也影响了我的开发方式。遇到问题时，我倾向于先理解问题本质，再动手解决。</p>
+          </div>
+        </div>
+        <div data-aos="fade-left" data-aos-duration="800">
+          <div class="card-glow p-10 rounded-3xl bg-white/[0.02] border border-white/[0.08] h-full">
+            <p class="section-label mb-4">Education</p>
+            <h3 class="text-2xl text-white font-light mb-8">教育背景</h3>
+            <div class="mb-10 pb-8 border-b border-white/[0.08]">
+              <div class="text-white text-xl font-medium mb-2">黄河交通学院</div>
+              <div class="text-neutral-400 mb-2">物联网工程 · 本科</div>
+              <div class="text-neutral-600 text-sm">2022/09 - 2026/07</div>
+            </div>
+            <p class="section-label mb-4">Honors</p>
+            <h3 class="text-2xl text-white font-light mb-8">荣誉与证书</h3>
+            <ul class="space-y-4">
+              <li class="honor-item">
+                <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                <span class="text-neutral-300">全国大学生机器人大赛省级二等奖</span>
+              </li>
+              <li class="honor-item">
+                <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                <span class="text-neutral-300">华为 HCIA-AI 初级证书</span>
+              </li>
+              <li class="honor-item">
+                <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                <span class="text-neutral-300">全国大学生计算机设计大赛校奖</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-32 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto">
+      <p class="section-label text-center mb-4">Skills</p>
+      <h2 class="text-4xl sm:text-5xl text-white font-light mb-6 text-center" data-aos="fade-up">技能</h2>
+      <p class="text-neutral-500 text-center max-w-2xl mx-auto mb-20 text-lg" data-aos="fade-up">覆盖运维、网络、嵌入式、移动开发和 AI 辅助工程</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" data-aos="fade-up" data-aos-duration="800">
+        <div class="skill-card card-glow p-7 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-neutral-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 01-2 2v4a2 2 0 012 2h14a2 2 0 012-2v-4a2 2 0 01-2-2m-2-4h.01M17 16h.01"></path></svg>
+            </div>
+            <h3 class="text-white font-medium text-lg">运维 & 部署</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Linux</span><span class="skill-tag">Shell</span><span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Docker</span><span class="skill-tag">Nginx</span><span class="skill-tag">SSH</span>
+          </div>
+        </div>
+        <div class="skill-card card-glow p-7 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-neutral-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <h3 class="text-white font-medium text-lg">网络 & 硬件</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">计算机网络</span><span class="skill-tag">TCP/IP</span><span class="skill-tag">机房维护</span>
+            <span class="skill-tag">多媒体设备</span><span class="skill-tag">LED 大屏</span>
+          </div>
+        </div>
+        <div class="skill-card card-glow p-7 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-neutral-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+            </div>
+            <h3 class="text-white font-medium text-lg">嵌入式 & IoT</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">STM32</span><span class="skill-tag">ESP8266</span><span class="skill-tag">C</span>
+            <span class="skill-tag">MQTT</span><span class="skill-tag">OneNET</span><span class="skill-tag">RFID</span>
+          </div>
+        </div>
+        <div class="skill-card card-glow p-7 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-neutral-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+            </div>
+            <h3 class="text-white font-medium text-lg">开发语言</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">C</span><span class="skill-tag">Python</span><span class="skill-tag">Kotlin</span>
+            <span class="skill-tag">JavaScript</span><span class="skill-tag">Dart</span><span class="skill-tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-card card-glow p-7 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-neutral-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+            </div>
+            <h3 class="text-white font-medium text-lg">移动 & 工具</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Flutter</span><span class="skill-tag">Jetpack Compose</span><span class="skill-tag">微信小程序</span>
+            <span class="skill-tag">Android</span><span class="skill-tag">Git</span>
+          </div>
+        </div>
+        <div class="skill-card card-glow p-7 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-neutral-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+            </div>
+            <h3 class="text-white font-medium text-lg">AI 辅助工具</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Claude Code</span><span class="skill-tag">Cursor</span><span class="skill-tag">GitHub Copilot</span>
+            <span class="skill-tag">Prompt Engineering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-32 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto">
+      <p class="section-label mb-4">Projects</p>
+      <h2 class="text-4xl sm:text-5xl text-white font-light mb-6" data-aos="fade-up">项目作品</h2>
+      <p class="text-neutral-500 max-w-2xl mb-20 text-lg" data-aos="fade-up">从嵌入式竞赛、毕业设计到移动应用和后端服务，覆盖完整工程链路</p>
+      <div class="space-y-16">
+        <article class="project-card card-glow group rounded-3xl overflow-hidden bg-white/[0.02] border border-white/[0.08] cursor-pointer" data-aos="fade-up" data-aos-duration="800" data-project="express" onclick="openProjectModal('express')">
+          <div class="flex flex-col lg:flex-row">
+            <div class="lg:w-2/5 aspect-[16/10] lg:aspect-auto relative overflow-hidden project-image">
+              <img src="assets/express_sorting.jpg" alt="智能快递分类系统" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/60"></div>
+            </div>
+            <div class="lg:w-3/5 p-10 lg:p-12">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-3 mb-6">
+                <h3 class="text-2xl text-white font-medium group-hover:text-white transition-colors">智能快递分类系统</h3>
+                <span class="text-sm text-neutral-500">全国大学生电子设计大赛</span>
+              </div>
+              <p class="text-neutral-400 leading-relaxed mb-6 text-lg">
+                基于 STM32 的快递分拣装置，集成 RFID 识别、称重模块、ESP8266 和 OLED 显示。实现快递识别、自动分类、称重与 OneNET 云端数据同步。
+              </p>
+              <div class="flex flex-wrap items-center gap-4">
+                <div class="flex flex-wrap gap-2">
+                  <span class="project-tag">STM32</span><span class="project-tag">RFID</span><span class="project-tag">ESP8266</span>
+                  <span class="project-tag">OneNET</span>
+                </div>
+                <span class="ml-auto text-sm text-neutral-400 group-hover:text-white transition-colors flex items-center gap-1">
+                  查看详情
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card-glow group rounded-3xl overflow-hidden bg-white/[0.02] border border-white/[0.08] cursor-pointer" data-aos="fade-up" data-aos-duration="800" data-project="curtain" onclick="openProjectModal('curtain')">
+          <div class="flex flex-col lg:flex-row">
+            <div class="lg:w-2/5 aspect-[16/10] lg:aspect-auto relative overflow-hidden project-image">
+              <img src="assets/graduation_project.jpg" alt="基于物联网的智能窗帘光照与温度联合控制系统" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/60"></div>
+            </div>
+            <div class="lg:w-3/5 p-10 lg:p-12">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-3 mb-6">
+                <h3 class="text-2xl text-white font-medium group-hover:text-white transition-colors">基于物联网的智能窗帘光照与温度联合控制系统</h3>
+                <span class="text-sm text-neutral-500">毕业设计</span>
+              </div>
+              <p class="text-neutral-400 leading-relaxed mb-6 text-lg">
+                以 STM32 为主控，通过 DHT11、光敏电阻采集环境数据，结合温度和光照阈值自动控制窗帘开合；通过 ESP8266 连接 OneNET MQTT，配合微信小程序实现远程控制。
+              </p>
+              <div class="flex flex-wrap items-center gap-4">
+                <div class="flex flex-wrap gap-2">
+                  <span class="project-tag">STM32</span><span class="project-tag">ESP8266</span><span class="project-tag">MQTT</span>
+                  <span class="project-tag">微信小程序</span><span class="project-tag">OneNET</span>
+                </div>
+                <span class="ml-auto text-sm text-neutral-400 group-hover:text-white transition-colors flex items-center gap-1">
+                  查看详情
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card-glow group rounded-3xl overflow-hidden bg-white/[0.02] border border-white/[0.08] cursor-pointer" data-aos="fade-up" data-aos-duration="800" data-project="mapmemory" onclick="openProjectModal('mapmemory')">
+          <div class="flex flex-col lg:flex-row">
+            <div class="lg:w-2/5 aspect-[16/10] lg:aspect-auto relative overflow-hidden project-image bg-gradient-to-br from-neutral-900 via-neutral-800 to-black flex items-center justify-center">
+              <img src="assets/map_photoo_logo.png" alt="地图记忆" class="w-40 h-40 object-contain relative z-10 project-icon rounded-3xl shadow-2xl">
+            </div>
+            <div class="lg:w-3/5 p-10 lg:p-12">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-3 mb-6">
+                <h3 class="text-2xl text-white font-medium group-hover:text-white transition-colors">地图记忆</h3>
+                <span class="text-sm text-neutral-500">Android 应用</span>
+              </div>
+              <p class="text-neutral-400 leading-relaxed mb-6 text-lg">
+                基于 Kotlin 和 Jetpack Compose 的照片管理应用扩展版。新增腾讯地图、关系组、纪念日、回忆册和城市足迹等功能。
+              </p>
+              <div class="flex flex-wrap items-center gap-4">
+                <div class="flex flex-wrap gap-2">
+                  <span class="project-tag">Kotlin</span><span class="project-tag">Jetpack Compose</span><span class="project-tag">Room</span>
+                  <span class="project-tag">腾讯地图 SDK</span><span class="project-tag">ML Kit</span>
+                </div>
+                <span class="ml-auto text-sm text-neutral-400 group-hover:text-white transition-colors flex items-center gap-1">
+                  查看详情
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card-glow group rounded-3xl overflow-hidden bg-white/[0.02] border border-white/[0.08] cursor-pointer" data-aos="fade-up" data-aos-duration="800" data-project="mapalbum" onclick="openProjectModal('mapalbum')">
+          <div class="flex flex-col lg:flex-row">
+            <div class="lg:w-2/5 aspect-[16/10] lg:aspect-auto relative overflow-hidden project-image">
+              <img src="assets/map_album.jpg" alt="map_album 地图相册" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/60"></div>
+            </div>
+            <div class="lg:w-3/5 p-10 lg:p-12">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-3 mb-6">
+                <h3 class="text-2xl text-white font-medium group-hover:text-white transition-colors">map_album 地图相册</h3>
+                <span class="text-sm text-neutral-500">Flutter 跨平台应用</span>
+              </div>
+              <p class="text-neutral-400 leading-relaxed mb-6 text-lg">
+                Flutter 跨平台相册应用，支持在 OpenStreetMap 上查看照片 GPS 标记、按地点和时间浏览、创建行程并回放路线。
+              </p>
+              <div class="flex flex-wrap items-center gap-4">
+                <div class="flex flex-wrap gap-2">
+                  <span class="project-tag">Flutter</span><span class="project-tag">Dart</span><span class="project-tag">BLoC</span>
+                  <span class="project-tag">Drift</span><span class="project-tag">OpenStreetMap</span>
+                </div>
+                <span class="ml-auto text-sm text-neutral-400 group-hover:text-white transition-colors flex items-center gap-1">
+                  查看详情
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card-glow group rounded-3xl overflow-hidden bg-white/[0.02] border border-white/[0.08] cursor-pointer" data-aos="fade-up" data-aos-duration="800" data-project="novel" onclick="openProjectModal('novel')">
+          <div class="flex flex-col lg:flex-row">
+            <div class="lg:w-2/5 aspect-[16/10] lg:aspect-auto relative overflow-hidden project-image">
+              <img src="assets/novel_server.jpg" alt="novel-server 阅读后端" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/60"></div>
+            </div>
+            <div class="lg:w-3/5 p-10 lg:p-12">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-3 mb-6">
+                <h3 class="text-2xl text-white font-medium group-hover:text-white transition-colors">novel-server 阅读后端</h3>
+                <span class="text-sm text-neutral-500">Python 后端服务</span>
+              </div>
+              <p class="text-neutral-400 leading-relaxed mb-6 text-lg">
+                基于 FastAPI 的小说/漫画阅读后端，支持 EPUB、TXT、ZIP/CBZ、RAR/CBR 多格式书籍自动扫描入库。
+              </p>
+              <div class="flex flex-wrap items-center gap-4">
+                <div class="flex flex-wrap gap-2">
+                  <span class="project-tag">Python</span><span class="project-tag">FastAPI</span><span class="project-tag">SQLite</span>
+                  <span class="project-tag">Docker</span><span class="project-tag">RESTful API</span>
+                </div>
+                <span class="ml-auto text-sm text-neutral-400 group-hover:text-white transition-colors flex items-center gap-1">
+                  查看详情
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="py-32 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto">
+      <p class="section-label mb-4">Experience</p>
+      <h2 class="text-4xl sm:text-5xl text-white font-light mb-6" data-aos="fade-up">实践经历</h2>
+      <p class="text-neutral-500 max-w-2xl mb-20 text-lg" data-aos="fade-up">2 年校园 IT 运维，覆盖多媒体教室、机房、校园活动和资产管理的完整链路</p>
+      <div class="card-glow p-12 rounded-3xl bg-white/[0.02] border border-white/[0.08]" data-aos="fade-up" data-aos-duration="800">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-3 mb-12 pb-8 border-b border-white/[0.08]">
+          <div>
+            <h3 class="text-2xl text-white font-medium mb-2">黄河交通学院 信息中心</h3>
+            <p class="text-neutral-400 text-lg">IT 运维助理</p>
+          </div>
+          <span class="text-sm text-neutral-500 px-4 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02]">2023/09 - 2025/12</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div class="space-y-8">
+            <div class="experience-item">
+              <div class="w-2 h-2 rounded-full bg-white/40 mt-2.5 shrink-0"></div>
+              <div>
+                <h4 class="text-white text-lg font-medium mb-2">多媒体教室运维</h4>
+                <p class="text-neutral-500 leading-relaxed">负责投影仪、中控、功放、音响、幕布日常巡检与故障排除；处理教师报修的电脑、投影、网络等问题。</p>
+              </div>
+            </div>
+            <div class="experience-item">
+              <div class="w-2 h-2 rounded-full bg-white/40 mt-2.5 shrink-0"></div>
+              <div>
+                <h4 class="text-white text-lg font-medium mb-2">计算机机房管理</h4>
+                <p class="text-neutral-500 leading-relaxed">完成系统重装、教学软件部署、网络故障处理和键鼠更换，保障日常教学及英语四六级考试顺利进行。</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-8">
+            <div class="experience-item">
+              <div class="w-2 h-2 rounded-full bg-white/40 mt-2.5 shrink-0"></div>
+              <div>
+                <h4 class="text-white text-lg font-medium mb-2">校园活动技术支持</h4>
+                <p class="text-neutral-500 leading-relaxed">操作会议室多媒体设备、音响调试、LED 大屏与投影切换，为校级会议、招聘会、讲座提供现场保障。</p>
+              </div>
+            </div>
+            <div class="experience-item">
+              <div class="w-2 h-2 rounded-full bg-white/40 mt-2.5 shrink-0"></div>
+              <div>
+                <h4 class="text-white text-lg font-medium mb-2">IT 资产管理</h4>
+                <p class="text-neutral-500 leading-relaxed">协助全校 IT 设备资产盘点、标签管理与报废登记；建立设备故障台账，记录型号、更换记录与历史故障。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-32 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+    <div class="max-w-5xl mx-auto text-center" data-aos="fade-up" data-aos-duration="800">
+      <p class="section-label text-center mb-4">Contact</p>
+      <h2 class="text-4xl sm:text-5xl text-white font-light mb-6">联系</h2>
+      <p class="text-neutral-500 mb-14 max-w-xl mx-auto text-lg">如有合适的岗位或项目机会，欢迎通过以下方式联系我</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="tel:19839757907" class="inline-flex items-center justify-center gap-2 px-10 py-4 bg-white text-black text-base font-medium rounded-full hover:bg-neutral-200 transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+          19839757907
+        </a>
+        <a href="mailto:Wn3305105269@163.com" class="inline-flex items-center justify-center gap-2 px-10 py-4 border border-white/20 text-white text-base font-medium rounded-full hover:bg-white/10 transition-all hover:scale-105">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          Wn3305105269@163.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Detail Modal -->
+  <div id="project-modal" class="fixed inset-0 z-[70] hidden" aria-modal="true" role="dialog">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeProjectModal()"></div>
+    <div class="relative z-10 min-h-screen flex items-center justify-center p-4 sm:p-6">
+      <div class="modal-content w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#0a0a0a] border border-white/[0.08] shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
+        <div class="flex flex-col lg:flex-row">
+          <div class="lg:w-2/5 relative aspect-video lg:aspect-auto lg:min-h-[500px]">
+            <img id="modal-image" src="" alt="" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent lg:bg-gradient-to-r"></div>
+          </div>
+          <div class="lg:w-3/5 p-8 lg:p-12">
+            <div class="flex justify-between items-start gap-4 mb-6">
+              <div>
+                <span id="modal-type" class="text-xs text-neutral-500 tracking-widest uppercase mb-2 block"></span>
+                <h3 id="modal-title" class="text-3xl text-white font-light"></h3>
+              </div>
+              <button onclick="closeProjectModal()" class="p-2 text-neutral-400 hover:text-white transition-colors" aria-label="关闭">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              </button>
+            </div>
+            <div id="modal-tags" class="flex flex-wrap gap-2 mb-8"></div>
+            <div id="modal-description" class="text-neutral-400 leading-relaxed space-y-4 mb-8"></div>
+            <div id="modal-highlights" class="space-y-4 mb-8">
+              <h4 class="text-white font-medium mb-3">项目亮点</h4>
+              <ul id="modal-highlights-list" class="space-y-3"></ul>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <button onclick="closeProjectModal()" class="px-6 py-3 rounded-full border border-white/20 text-white text-sm hover:bg-white/10 transition-all">关闭</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-14 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="text-sm text-neutral-600">© 2026 程磊</div>
+      <div class="text-sm text-neutral-600">物联网工程 · 运维 · 开发</div>
+    </div>
+  </footer>
+
+  <div id="toast" class="fixed bottom-6 right-6 bg-white text-black px-6 py-3.5 rounded-xl shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 z-50 text-sm">
+    <span id="toast-message">Demo 链接暂未部署</span>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
