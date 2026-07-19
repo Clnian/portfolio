@@ -168,21 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   counters.forEach(counter => counterObserver.observe(counter));
 
-  // Hero name character animation
-  const heroName = document.getElementById('hero-name');
-  if (heroName) {
-    const text = heroName.textContent.trim();
-    heroName.innerHTML = '';
-    text.split('').forEach((char, index) => {
-      const span = document.createElement('span');
-      span.textContent = char;
-      span.style.display = 'inline-block';  /* transform 需要块级上下文 */
-      span.style.opacity = '0';
-      span.style.transform = 'translateY(30px)';
-      span.style.animation = `fade-in-up 0.8s ease-out ${index * 0.1}s forwards`;
-      heroName.appendChild(span);
-    });
-  }
+  // Hero title relies on parent AOS fade-up; no per-character split to avoid CJK rendering artifacts.
 
   // Toast helper
   window.showToast = (message) => {
