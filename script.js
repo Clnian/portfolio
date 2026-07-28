@@ -78,6 +78,24 @@ const projectData = {
       '动态 Legado 书源生成',
       'Docker 容器化部署与 SQLite 持久化'
     ]
+  },
+  omnimedia: {
+    title: 'OmniMedia Ops 自媒体运营',
+    type: 'Python 全栈项目',
+    image: 'assets/omnimedia_ops.jpg',
+    tags: ['Python', 'FastAPI', 'Playwright', 'SQLite', 'Docker', 'Clean Architecture'],
+    description: `
+      <p>面向小红书、今日头条、抖音、微信公众号、微博和知乎的多平台自媒体运营编排系统 v0.10。</p>
+      <p>覆盖热点聚合（微博/知乎/抖音/百度）、AI 内容生成（DeepSeek + GPT-image）、品牌约束审核、去重治理、发布 Outbox 队列与租约抢占、指标采集与 A/B 归因、自动运营计划和 168 小时稳定性验证的完整闭环。</p>
+      <p>小红书和头条采用隔离浏览器 Worker 架构，支持真实发布器模式；采用 Clean Architecture 六边形架构，严格类型检查，含端到端测试和 Docker Compose 编排。</p>
+    `,
+    highlights: [
+      'Clean Architecture 六边形架构，FastAPI + Pydantic 严格类型',
+      '多平台热点聚合 + AI 内容生成 + 品牌审核 + 发布队列闭环',
+      '小红书/头条隔离浏览器 Worker，Playwright 自动发布',
+      'Outbox 事务队列、租约抢占、死信重试、HMAC 回调签名',
+      'SQLite WAL 持久化 + Docker Compose 编排部署'
+    ]
   }
 };
 
