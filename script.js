@@ -115,18 +115,20 @@ const projectData = {
       { label: '当前版本', value: 'v0.10' },
       { label: '工程形态', value: '模块化单体 + Worker' }
     ],
-    tags: ['Python', 'FastAPI', 'Pydantic', 'Playwright / CDP', 'SQLite WAL', 'Docker Compose'],
+    tags: ['Python', 'FastAPI', 'Pydantic', 'Playwright / CDP', 'SQLite WAL', 'Docker Compose', 'FFmpeg', 'DashScope'],
     description: `
       <p>面向小红书、今日头条、抖音、微信公众号、微博和知乎的多平台运营编排系统 v0.10。项目采用模块化单体承载业务事务，把浏览器自动化隔离为独立 Worker。</p>
       <p>已实现微博、知乎、抖音和百度热点响应解析，OpenAI-compatible 文本与图片服务，品牌知识库、去重、事实来源与素材许可治理，人工审核、内容日历、A/B 归因和自动周报。</p>
-      <p>发布侧使用事务 Outbox、租约抢占、指数退避、结果未知对账和死信；小红书真实图文预览、专用 Worker 登录、账号校验与禁发门禁已经验证，真实发布回执、指标回收及平台正式权限仍待生产验收。</p>
+      <p>发布侧使用事务 Outbox、租约抢占、指数退避、结果未知对账和死信；小红书真实图文预览、专用 Worker 登录、账号校验与禁发门禁已经验证。</p>
+      <p>视频制作功能：分镜编排→首帧渲染→DashScope AI 视频生成→FFmpeg 合成，支持 EXPRESS/STANDARD/DRAMA 三种制作模式。</p>
     `,
     highlights: [
       '微博、知乎、抖音、百度热点解析，支持单源失败隔离和凭据引用',
       'OpenAI-compatible 文本/图片生成与 Ian 小黑插画提示词管线',
       '品牌、相似度、事实来源和素材版权治理，保留人工审核门禁',
       '事务 Outbox、租约恢复、指数退避、结果对账、死信和 HMAC 防重放回调',
-      '小红书/头条隔离 Worker、有窗口预览、账号熔断与真实发布二次开关'
+      '小红书/头条隔离 Worker、有窗口预览、账号熔断与真实发布二次开关',
+      'DashScope 视频脚本→分镜→首帧→AI 生成→FFmpeg 合成流水线（EXPRESS/STANDARD/DRAMA）'
     ]
   }
 };
