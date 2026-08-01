@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 使用说明 · 程磊个人介绍网站</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'Noto Sans SC', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    .doc-header { background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,255,255,.08), transparent); }
+    .doc-table { border-collapse: separate; border-spacing: 0; }
+    .doc-table th { background: rgba(255,255,255,.03); font-weight: 500; text-align: left; padding: .75rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); font-size: .875rem; color: #a3a3a3; white-space: nowrap; }
+    .doc-table td { padding: .75rem 1rem; border-bottom: 1px solid rgba(255,255,255,.05); font-size: .9rem; color: #d4d4d4; vertical-align: top; }
+    .doc-table tr:last-child td { border-bottom: none; }
+    .doc-table-wrap { border: 1px solid rgba(255,255,255,.08); border-radius: 1rem; overflow: hidden; overflow-x: auto; }
+    .doc-section-title { display: flex; align-items: center; gap: .75rem; }
+    .doc-section-num { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: .5rem; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); font-size: .875rem; color: #fff; font-weight: 500; flex-shrink: 0; }
+    .doc-sub-label { color: #737373; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .5rem; display: block; }
+    .doc-inline-code { font-family: 'JetBrains Mono', monospace; font-size: .85em; background: rgba(255,255,255,.06); padding: .15em .4em; border-radius: .3rem; color: #e5e5e5; }
+    .doc-problem { border-left: 2px solid rgba(255,255,255,.15); padding-left: 1.25rem; }
+    .doc-back-link { transition: all .2s; }
+    .doc-back-link:hover { color: #fff; transform: translateX(-2px); }
+  </style>
+</head>
+<body class="bg-black text-neutral-300 font-sans antialiased selection:bg-white/20 selection:text-white overflow-x-hidden">
+
+  <!-- Background -->
+  <div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:72px_72px]"></div>
+  </div>
+
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 border-b border-white/[0.06] bg-black/60 backdrop-blur-2xl">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="https://clnian.github.io/portfolio/" class="doc-back-link text-sm text-neutral-400 flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        返回个人网站
+      </a>
+      <span class="text-xs text-neutral-600 tracking-widest uppercase">AI 使用说明</span>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="doc-header py-20 px-4 sm:px-6 lg:px-8 border-b border-white/[0.06]">
+    <div class="max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] text-neutral-400 text-xs mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        程序员 AI 工具实战测试题
+      </div>
+      <h1 class="text-4xl sm:text-5xl text-white font-light mb-6 leading-tight">AI 使用说明</h1>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+        <div class="flex items-center gap-3 text-neutral-400">
+          <span class="text-neutral-600 w-16 shrink-0">应试人</span>
+          <span class="text-neutral-200">程磊</span>
+        </div>
+        <div class="flex items-center gap-3 text-neutral-400">
+          <span class="text-neutral-600 w-16 shrink-0">项目</span>
+          <span class="text-neutral-200">个人介绍网站</span>
+        </div>
+        <div class="flex items-center gap-3 text-neutral-400">
+          <span class="text-neutral-600 w-16 shrink-0">线上</span>
+          <a href="https://clnian.github.io/portfolio/" target="_blank" class="text-neutral-200 hover:text-white transition-colors truncate">clnian.github.io/portfolio/</a>
+        </div>
+        <div class="flex items-center gap-3 text-neutral-400">
+          <span class="text-neutral-600 w-16 shrink-0">仓库</span>
+          <a href="https://github.com/Clnian/portfolio" target="_blank" class="text-neutral-200 hover:text-white transition-colors truncate">github.com/Clnian/portfolio</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+    <!-- Section 1 -->
+    <section>
+      <div class="doc-section-title mb-8">
+        <span class="doc-section-num">1</span>
+        <h2 class="text-2xl text-white font-light">使用的 AI 工具</h2>
+      </div>
+      <div class="doc-table-wrap mb-6">
+        <table class="doc-table w-full">
+          <thead>
+            <tr><th>工具</th><th>用途</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="text-white font-medium whitespace-nowrap">Claude Code</td><td>主要开发工具，负责页面结构生成、样式编写、交互逻辑、Bug 排查</td></tr>
+            <tr><td class="text-white font-medium whitespace-nowrap">OpenAI Codex</td><td>终端代码生成与补全，辅助快速调整 Tailwind 类名和 JS 语法</td></tr>
+            <tr><td class="text-white font-medium whitespace-nowrap">WorkBuddy</td><td>项目迭代、代码审查、文档撰写、部署验证</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-neutral-400 leading-relaxed">选型理由：Claude Code 擅长长上下文理解和多文件协同，适合从零搭建完整站点；Codex 适合终端内快速生成和迭代代码片段；两者配合可以在"整体设计"和"细节微调"之间快速切换。</p>
+    </section>
+
+    <!-- Section 2 -->
+    <section>
+      <div class="doc-section-title mb-8">
+        <span class="doc-section-num">2</span>
+        <h2 class="text-2xl text-white font-light">AI 帮助完成的工作</h2>
+      </div>
+
+      <!-- 2.1 需求拆解与设计 -->
+      <div class="space-y-8">
+        <div>
+          <span class="doc-sub-label">2.1 需求拆解与设计</span>
+
+          <h3 class="text-lg text-white font-medium mb-4">需求拆解</h3>
+          <p class="text-neutral-400 leading-relaxed mb-4">拿到"做一个个人介绍网站并部署到外网"这个需求后，先拆成可执行的任务链：</p>
+          <div class="doc-table-wrap mb-4">
+            <table class="doc-table w-full">
+              <thead>
+                <tr><th>阶段</th><th>任务</th><th>产出</th><th>验收标准</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="whitespace-nowrap">① 信息梳理</td><td>整理个人简历、项目经历、技能清单</td><td>结构化素材文档</td><td>信息完整、无遗漏</td></tr>
+                <tr><td class="whitespace-nowrap">② 结构设计</td><td>确定页面分区和信息层级</td><td>页面线框图 / 区块清单</td><td>逻辑通顺、重点突出</td></tr>
+                <tr><td class="whitespace-nowrap">③ 视觉选型</td><td>确定风格基调、配色、字体</td><td>视觉方案</td><td>匹配技术人设</td></tr>
+                <tr><td class="whitespace-nowrap">④ 开发实现</td><td>HTML 骨架 → 样式 → 交互 → 图片</td><td>可运行的网站</td><td>桌面 / 移动端均正常</td></tr>
+                <tr><td class="whitespace-nowrap">⑤ 部署上线</td><td>推送 GitHub → 开启 Pages</td><td>可访问的 URL</td><td>外网能打开</td></tr>
+                <tr><td class="whitespace-nowrap">⑥ 验证优化</td><td>多端测试、性能排查、文案校对</td><td>最终版本</td><td>无 bug、加载正常</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-neutral-400 leading-relaxed">每个阶段有明确的产出和验收标准，做完一步再进下一步，避免 AI 一次性生成导致返工。</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg text-white font-medium mb-3">设计目标</h3>
+          <p class="text-neutral-400 leading-relaxed">做一个能同时体现「运维 + 开发」双背景的个人介绍网站，面向招聘方，3 秒内传达"我是谁、能做什么"，30 秒内看到项目实力。</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg text-white font-medium mb-4">信息架构设计</h3>
+          <p class="text-neutral-400 leading-relaxed mb-4">按「认知递进」原则排布页面分区，让访客从浅到深逐步了解我：</p>
+          <div class="doc-table-wrap mb-4">
+            <table class="doc-table w-full">
+              <thead>
+                <tr><th>顺序</th><th>区块</th><th>设计意图</th><th>核心信息</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td class="text-white whitespace-nowrap">Hero</td><td>第一眼定位</td><td>姓名 + 身份标签 + 一句话定位 + 联系方式</td></tr>
+                <tr><td>2</td><td class="text-white whitespace-nowrap">About</td><td>建立信任</td><td>自我介绍 + 教育背景 + 荣誉证书</td></tr>
+                <tr><td>3</td><td class="text-white whitespace-nowrap">Skills</td><td>能力全貌</td><td>6 类技能矩阵，覆盖运维 / 网络 / 嵌入式 / 开发 / 客户端 / AI</td></tr>
+                <tr><td>4</td><td class="text-white whitespace-nowrap">Projects</td><td>实力证明</td><td>5 个真实项目，点击可查看详情</td></tr>
+                <tr><td>5</td><td class="text-white whitespace-nowrap">Experience</td><td>履历背书</td><td>2 年校园 IT 运维，4 项职责</td></tr>
+                <tr><td>6</td><td class="text-white whitespace-nowrap">Contact</td><td>转化入口</td><td>电话 / 邮箱 / GitHub</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-neutral-400 leading-relaxed">设计决策：联系方式在 Hero 和 Contact 出现两次——Hero 里让访客第一眼就能拿到，Contact 里作为最终转化入口。</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg text-white font-medium mb-4">视觉风格设计</h3>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>整体风格：深色科技风（纯黑底 + 中性灰文字 + 白色强调），匹配物联网 / 嵌入式 / 运维的技术人设，与 Moonshot / Vercel 等技术公司官网风格一致</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>配色方案：背景 <code class="doc-inline-code">#000</code>，正文 <code class="doc-inline-code">neutral-300/400</code>，强调 <code class="doc-inline-code">white</code>，点缀色用 <code class="doc-inline-code">emerald-400</code> 表示"在线 / 可用"状态</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>字体：Inter（英文 / 数字）+ Noto Sans SC（中文），兼顾现代感和中文可读性</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>背景层次：网格线 + 径向渐变光晕 + 鼠标聚光灯 + Canvas 粒子，四层叠加营造空间深度</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg text-white font-medium mb-4">交互设计</h3>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>滚动进度条：顶部 2px 白线，实时反馈阅读进度</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>AOS 入场动画：每个区块滚动到视口时淡入，引导阅读节奏</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>项目弹窗：点击项目卡片弹出详情（多图 + 关键成果 + 技术标签），不跳页即可深读</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>数字计数器：Hero 区"2 年运维""5+ 项目"从 0 滚动到目标值，强化记忆</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>导航栏：滚动时毛玻璃化，固定顶部，移动端收为汉堡菜单</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg text-white font-medium mb-4">响应式策略</h3>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>断点：<code class="doc-inline-code">sm:640px</code>（手机）、<code class="doc-inline-code">md:768px</code>（平板）、<code class="doc-inline-code">lg:1024px</code>（桌面）</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>技能卡片：桌面 3 栏 → 平板 2 栏 → 手机 1 栏</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>项目卡片：桌面图文左右分栏 → 移动端上下堆叠</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>Hero 标题：桌面大号 → 移动端缩小，避免溢出</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="border-white/[0.06] my-10">
+
+      <!-- 2.2 - 2.5 -->
+      <div class="space-y-8">
+        <div>
+          <span class="doc-sub-label">2.2 页面骨架与样式</span>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>使用 Tailwind CSS 生成整体布局，采用深色科技风，匹配物联网 / 嵌入式 / 运维的技术人设</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>生成响应式布局：桌面端三栏技能卡片、移动端单栏堆叠</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>生成视觉细节：导航栏毛玻璃、网格背景、渐变光晕、滚动进度条</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="doc-sub-label">2.3 交互动画</span>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>粒子背景动画（Canvas 实现）</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>AOS 滚动入场动画</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>项目详情弹窗（点击项目卡片弹出，含多图切换、关键成果列表）</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>移动端汉堡菜单</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>数字计数器动画</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="doc-sub-label">2.4 内容生成</span>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>根据个人简历和项目经历，生成各区块文案</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>技能标签分类：运维 &amp; 部署、网络 &amp; 硬件、嵌入式 &amp; IoT、开发语言、客户端 &amp; 工具、AI 辅助工具</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>项目描述：智能快递分类系统、智能窗帘毕设、地图记忆、novel-server、OmniMedia Ops</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="doc-sub-label">2.5 部署</span>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>生成 <code class="doc-inline-code">.gitignore</code>、README</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>指导 GitHub Pages 部署流程</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section>
+      <div class="doc-section-title mb-8">
+        <span class="doc-section-num">3</span>
+        <h2 class="text-2xl text-white font-light">自己手动修改的内容</h2>
+      </div>
+      <p class="text-neutral-400 leading-relaxed mb-8">AI 生成的代码不能直接用，以下是我手动介入的部分：</p>
+      <div class="space-y-8">
+        <div>
+          <span class="doc-sub-label">3.1 项目内容真实化</span>
+          <p class="text-neutral-400 leading-relaxed mb-3">AI 初版生成的项目描述比较泛化，我根据自己真实经历重写了每个项目的描述：</p>
+          <ul class="space-y-2 text-neutral-400 ml-5">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">◦</span><span>智能窗帘：补充了 STM32F103、ESP8266、OneNET MQTT、微信小程序的技术细节</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">◦</span><span>快递分类系统：明确了我的角色是功能测试和端到端联调</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">◦</span><span>OmniMedia Ops：补充了小红书真实图文预览、人工审核门禁等真实流程</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="doc-sub-label">3.2 图片资源处理</span>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>手动整理项目截图，统一命名（curtain-hardware.jpg、express_sorting.jpg 等）</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>调整图片尺寸和比例，确保在 16:10 卡片中不变形</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>为地图记忆项目单独处理 Logo，使用居中展示而非满铺</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="doc-sub-label">3.3 移动端适配</span>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>AI 生成的移动端字号偏大，手动调整 Hero 标题在手机端的尺寸</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>项目卡片的图片和文字比例在窄屏下需要手动调 <code class="doc-inline-code">flex-col</code> 切换</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>联系方式按钮在手机端改为纵向堆叠</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="doc-sub-label">3.4 性能优化</span>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>粒子背景在低端设备上卡顿，手动降低粒子数量和刷新频率</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>项目弹窗图片懒加载，避免首屏加载所有大图</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>AOS 动画在首屏加了兜底逻辑，防止 CDN 加载失败时内容不显示</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="doc-sub-label">3.5 文案校对</span>
+          <ul class="space-y-3 text-neutral-400">
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>修正 AI 生成的错别字和不通顺表述</span></li>
+            <li class="flex gap-3"><span class="text-neutral-600 shrink-0">•</span><span>调整语气，让自我介绍更务实、不浮夸</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section>
+      <div class="doc-section-title mb-8">
+        <span class="doc-section-num">4</span>
+        <h2 class="text-2xl text-white font-light">遇到的问题及解决方式</h2>
+      </div>
+      <div class="space-y-8">
+        <div class="doc-problem">
+          <h3 class="text-white font-medium mb-3">问题 1：GitHub Pages 图片路径 404</h3>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li><span class="text-neutral-600">现象：</span>本地预览正常，部署后部分图片显示裂图</li>
+            <li><span class="text-neutral-600">原因：</span>AI 生成的路径用了绝对路径 <code class="doc-inline-code">/assets/xxx.jpg</code>，GitHub Pages 子路径下需要相对路径 <code class="doc-inline-code">./assets/xxx.jpg</code></li>
+            <li><span class="text-neutral-600">解决：</span>全局替换图片路径，F12 Network 面板逐个验证</li>
+          </ul>
+        </div>
+        <div class="doc-problem">
+          <h3 class="text-white font-medium mb-3">问题 2：AOS 动画首屏白屏</h3>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li><span class="text-neutral-600">现象：</span>弱网环境下 AOS CDN 加载慢，首屏内容被 <code class="doc-inline-code">data-aos</code> 隐藏导致白屏</li>
+            <li><span class="text-neutral-600">解决：</span>加 <code class="doc-inline-code">&lt;noscript&gt;</code> 兜底样式 + setTimeout 延迟兜底，确保 2 秒后无论 AOS 是否加载完成，内容都会显示</li>
+          </ul>
+        </div>
+        <div class="doc-problem">
+          <h3 class="text-white font-medium mb-3">问题 3：移动端菜单点击无反应</h3>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li><span class="text-neutral-600">现象：</span>汉堡菜单按钮在部分手机浏览器上点击无效</li>
+            <li><span class="text-neutral-600">原因：</span>AI 写的事件监听用了 <code class="doc-inline-code">click</code>，但某些移动浏览器有 300ms 延迟</li>
+            <li><span class="text-neutral-600">解决：</span>改用 <code class="doc-inline-code">touchstart</code> + <code class="doc-inline-code">click</code> 双绑定，并加 <code class="doc-inline-code">e.preventDefault()</code> 防止重复触发</li>
+          </ul>
+        </div>
+        <div class="doc-problem">
+          <h3 class="text-white font-medium mb-3">问题 4：项目弹窗图片溢出</h3>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li><span class="text-neutral-600">现象：</span>OmniMedia Ops 的 Dashboard 截图宽度超出弹窗</li>
+            <li><span class="text-neutral-600">解决：</span>给图片加 <code class="doc-inline-code">max-w-full object-contain</code>，并限制弹窗最大高度 <code class="doc-inline-code">max-h-[90vh]</code> + <code class="doc-inline-code">overflow-y-auto</code></li>
+          </ul>
+        </div>
+        <div class="doc-problem">
+          <h3 class="text-white font-medium mb-3">问题 5：Tailwind Play CDN 生产环境警告</h3>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li><span class="text-neutral-600">现象：</span>控制台出现 "cdn.tailwindcss.com should not be used in production" 警告</li>
+            <li><span class="text-neutral-600">判断：</span>对于个人作品集这种轻量场景，Play CDN 的体积和延迟可以接受，暂不迁移到构建流程；如果后续需要优化，可以改用 Tailwind CLI 预编译</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5 -->
+    <section>
+      <div class="doc-section-title mb-8">
+        <span class="doc-section-num">5</span>
+        <h2 class="text-2xl text-white font-light">最终成果</h2>
+      </div>
+      <div class="doc-table-wrap">
+        <table class="doc-table w-full">
+          <thead>
+            <tr><th>项目</th><th>说明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="text-white whitespace-nowrap">线上地址</td><td><a href="https://clnian.github.io/portfolio/" target="_blank" class="text-neutral-200 hover:text-white transition-colors">https://clnian.github.io/portfolio/</a></td></tr>
+            <tr><td class="text-white whitespace-nowrap">代码仓库</td><td><a href="https://github.com/Clnian/portfolio" target="_blank" class="text-neutral-200 hover:text-white transition-colors">https://github.com/Clnian/portfolio</a></td></tr>
+            <tr><td class="text-white whitespace-nowrap">技术栈</td><td>HTML + Tailwind CSS + 原生 JS + AOS + Canvas</td></tr>
+            <tr><td class="text-white whitespace-nowrap">部署方式</td><td>GitHub Pages 静态托管</td></tr>
+            <tr><td class="text-white whitespace-nowrap">响应式</td><td>支持桌面 / 平板 / 手机</td></tr>
+            <tr><td class="text-white whitespace-nowrap">页面区块</td><td>Hero · About · Skills · Projects · Experience · Contact</td></tr>
+            <tr><td class="text-white whitespace-nowrap">项目数量</td><td>5 个（竞赛 / 毕设 / Android / 后端 / 全栈）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="py-10 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="text-sm text-neutral-600">© 2026 程磊</div>
+      <a href="https://clnian.github.io/portfolio/" class="text-sm text-neutral-400 hover:text-white transition-colors">返回个人网站 →</a>
+    </div>
+  </footer>
+
+</body>
+</html>
